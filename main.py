@@ -4,6 +4,7 @@ import table_functions as tf
 
 
 def get_vars(expr):
+    """Function gets all vars from expression."""
     variables = list()
     for i in expr:
         if i.isalpha() == True and check_vars(variables, i):
@@ -13,6 +14,7 @@ def get_vars(expr):
 
 
 def check_vars(variables, var):
+    """Function checks if all vars are letters."""
     check = 0
     for i in variables:
         if var == i:
@@ -25,13 +27,14 @@ def check_vars(variables, var):
 
 
 def check_upper(variables):
+    """Function checks if all symbols are capital."""
     for i in variables:
         if i.isupper() == False:
             return False
 
 
-# main() function. There's all calls of another functions
 def main():
+    """Function does calls of another functions."""
     expr = input('Enter expression: ').replace(' ', '')
     variables = list()
     variables = get_vars(expr)

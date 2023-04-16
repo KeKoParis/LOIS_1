@@ -1,4 +1,5 @@
 def build(table, variables):
+    """Function builds pcnf out of table."""
     pcnf_expr = ''
     for i in range(len(table)):
         if table[i][-1] == 0:

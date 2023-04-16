@@ -1,5 +1,5 @@
 def solve(table, variables, expr):
-
+    """Function solves expression and puts results into the table."""
     for i in table:
         curr_expr = expr
         while True:
@@ -14,6 +14,7 @@ def solve(table, variables, expr):
 
 
 def solve_subexpr(row, variables, expr):
+    """Function solves expression for vars with row value"""
     for i in range(len(variables)):
         expr = expr.replace(variables[i], str(row[i]))
 
@@ -27,6 +28,7 @@ def solve_subexpr(row, variables, expr):
 
 
 def solve_disj(expr):
+    """Function solves disjunction."""
     while expr.find('(0\\/0)') != -1:
         expr = expr.replace('(0\\/0)', '0')
     while expr.find('(1\\/0)') != -1:
@@ -39,6 +41,7 @@ def solve_disj(expr):
 
 
 def solve_conj(expr):
+    """Function solves conjunction."""
     while expr.find('(0/\\0)') != -1:
         expr = expr.replace('(0/\\0)', '0')
     while expr.find('(1/\\0)') != -1:
@@ -51,6 +54,7 @@ def solve_conj(expr):
 
 
 def solve_eq(expr):
+    """Function solves equivalence."""
     while expr.find('(0~0)') != -1:
         expr = expr.replace('(0~0)', '1')
     while expr.find('(1~0)') != -1:
@@ -63,6 +67,7 @@ def solve_eq(expr):
 
 
 def solve_impl(expr):
+    """Function solves implication."""
     while expr.find('(0->0)') != -1:
         expr = expr.replace('(0->0)', '1')
     while expr.find('(1->0)') != -1:
@@ -75,6 +80,7 @@ def solve_impl(expr):
 
 
 def solve_neg(expr):
+    """Function solves negation"""
     while expr.find('(!0)') != -1:
         expr = expr.replace('(!0)', '1')
     while expr.find('(!1)') != -1:
