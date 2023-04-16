@@ -1,4 +1,5 @@
 def build_table(variables):
+    """Function creates a table."""
     len_rows = len(variables) + 1
     len_columns = len(variables) ** 2
     if len_columns % 2 != 0:
@@ -13,6 +14,7 @@ def build_table(variables):
 
 
 def fill_table(table):
+    """Function fills the table with values."""
     switch = 1
     for i in range(len(table[0]) - 1):
         parameter = 0
