@@ -42,6 +42,10 @@ def main():
     if check_upper(variables) == False:
         return False
 
+    if len(variables) == 0:
+        return True
+
+
     table = tf.build_table(variables)
 
     if se.solve(table, variables, expr) == False:
@@ -51,5 +55,9 @@ def main():
 
 
 if __name__ == '__main__':
-    if main() == False:
-        print('Wrong syntax')
+    while True:
+        if main() == False:
+            print('Wrong syntax')
+        if input('Do you want to continue [y/n] ') == 'n':
+            break
+        print()
