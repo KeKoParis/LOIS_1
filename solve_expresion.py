@@ -1,3 +1,13 @@
+'''
+Лабораторная работа № 1 по ЛОИС
+Вариант 8 (Построение СКНФ)
+Выполнил Войткус Станислав,
+        Мирошниченко Константин,
+        Лапковский Михаил
+Дата выполнения 18.04.2023
+'''
+
+
 def solve(table, variables, expr):
     """Function solves expression and puts results into the table."""
     for i in table:
