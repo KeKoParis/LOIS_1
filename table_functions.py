@@ -11,14 +11,11 @@
 def build_table(variables):
     """Function creates a table."""
     len_rows = len(variables) + 1
-    len_columns = len(variables) ** 2
-    if len_columns % 2 != 0:
-        len_columns -= 1
-    if len_columns == 0:
-        len_columns += 2
+    len_columns = 2 ** len(variables)
 
     table = [[0 for i in range(len_rows)] for j in range(len_columns)]
     fill_table(table)
+
 
     return table
 

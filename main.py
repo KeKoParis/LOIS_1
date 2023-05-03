@@ -1,5 +1,6 @@
 import build_pcnf as bp
 import solve_expresion as se
+import solve_numeric as sn
 import table_functions as tf
 
 '''
@@ -52,12 +53,25 @@ def main():
     """Function calls another functions."""
     expr = input('Enter expression: ')
     variables: list = get_vars(expr)
+    if len(variables) > 17:
+        print("\nIt'll be long. Please enter less than 17 variables.\n")
+        return False
 
     if expr == '':
         return False
 
     if check_nums(expr):
         return False
+
+    if len(variables) == 0:
+        expr = sn.solve_num(expr)
+        if expr == '0':
+            print('0')
+            return True
+        elif expr == '1':
+            return True
+        else:
+            return False
 
     if check_upper(variables) is False:
         return False
@@ -77,6 +91,6 @@ if __name__ == '__main__':
     while True:
         if main() is False:
             print('Wrong syntax')
-        if input('Do you want to continue [y/n] ') == 'n':
+        if input('******************     Do you want to continue [y/n]     ******************\n') == 'n':
             break
         print()
