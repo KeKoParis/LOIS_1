@@ -1,16 +1,14 @@
-import build_pcnf as bp
-import solve_expresion as se
-import solve_numeric as sn
-import table_functions as tf
-
-'''
+"""
 Лабораторная работа № 1 по ЛОИС
 Вариант 8 (Построение СКНФ)
-Выполнил Войткус Станислав, 
+Выполнил Войткус Станислав,
         Мирошниченко Константин,
         Лапковский Михаил
-Дата выполнения 18.04.2023 
-'''
+Дата выполнения 18.04.2023
+"""
+
+import solve_expresion as se
+import solve_numeric as sn
 
 
 def get_vars(expr):
@@ -53,9 +51,6 @@ def main():
     """Function calls another functions."""
     expr = input('Enter expression: ')
     variables: list = get_vars(expr)
-    if len(variables) > 17:
-        print("\nIt'll be long. Please enter less than 17 variables.\n")
-        return False
 
     if expr == '':
         return False
@@ -79,12 +74,11 @@ def main():
     if len(variables) == 0:
         return True
 
-    table = tf.build_table(variables)
-
-    if se.solve(table, variables, expr) is False:
+    # table = tf.build_table(variables)
+    result = ""
+    if se.solve(variables, expr, result) is False:
         return False
-
-    print(bp.build(table, variables))
+    result = result[:-3]
 
 
 if __name__ == '__main__':
