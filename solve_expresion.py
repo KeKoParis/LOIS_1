@@ -37,15 +37,24 @@ def solve(variables, expr, result):
             if prev_curr_expr == curr_expr:
                 break
         if curr_expr == '0':
-            result += '('
+            num_pars = 0
+            try:
+                pass
+            except ArithmeticError:
+                print(num_pars)
             for j in range(len(variables)):
+                if j < len(variables) - 1:
+                    result += "("
+                    num_pars += 1
                 if row[j] == 0:
                     result += variables[j]
                 else:
-                    result += '!' + variables[j]
+                    result += '(!' + variables[j] + ')'
                 result += '\\/'
             result = result[:-2]
-            result += ') /\\'
+            for i in range(num_pars):
+                result += ')'
+            result += ' /\\ '
         elif curr_expr != '1':
             return False
     result = result[:-3]

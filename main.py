@@ -71,14 +71,9 @@ def main():
     if check_upper(variables) is False:
         return False
 
-    if len(variables) == 0:
-        return True
-
-    # table = tf.build_table(variables)
     result = ""
     if se.solve(variables, expr, result) is False:
         return False
-    result = result[:-3]
 
 
 if __name__ == '__main__':
