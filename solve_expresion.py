@@ -22,7 +22,7 @@ def get_row(number, num_vars):
     return row
 
 
-def solve(variables, expr, result):
+def solve(variables, expr):
     """Function solves expression and puts results into the table."""
     number = -1
     flag_br_2 = 0
