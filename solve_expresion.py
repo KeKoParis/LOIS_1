@@ -26,42 +26,16 @@ def solve(variables, expr, result):
     """Function solves expression and puts results into the table."""
     number = -1
     flag_br_2 = 0
+    result = ""
     for i in range(2 ** len(variables)):
 
         number += 1
-        curr_expr = expr
 
-        row = get_row(number, len(variables))
-        while True:
-            prev_curr_expr = curr_expr
-            curr_expr = solve_subexpr(row, variables, curr_expr)
-            if prev_curr_expr == curr_expr:
-                break
+        curr_expr, row = get_value(number, expr, variables)
 
         if curr_expr == '0':
-            curr_result = ""
-            flag_br_1 = 0
-            for j in range(len(variables)):
-                if row[j] == 0:
-                    curr_result += variables[j]
-                else:
-                    curr_result += '(!' + variables[j] + ')'
 
-                if flag_br_1 == 1:
-                    curr_result = '(' + curr_result + ')'
-                flag_br_1 = 1
-                curr_result += '\\/'
-
-            result += curr_result[:-2]
-            if flag_br_2 == 1:
-                result = '(' + result + ')'
-            flag_br_2 = 1
-
-
-            result += '/\\'
-            if flag_br_1 == 0:
-                result = ')' + result
-                flag_br_1 = 0
+            result, flag_br_2 = get_expr(curr_expr, row, variables, result, flag_br_2)
 
         elif curr_expr != '1':
             return False
@@ -70,6 +44,46 @@ def solve(variables, expr, result):
 
     print(result)
     return True
+
+
+def get_expr(curr_expr, row, variables, result, flag_br_2):
+    if curr_expr == '0':
+        curr_result = ""
+        flag_br_1 = 0
+        for j in range(len(variables)):
+            if row[j] == 0:
+                curr_result += variables[j]
+            else:
+                curr_result += '(!' + variables[j] + ')'
+
+            if flag_br_1 == 1:
+                curr_result = '(' + curr_result + ')'
+            flag_br_1 = 1
+            curr_result += '\\/'
+
+        result += curr_result[:-2]
+        if flag_br_2 == 1:
+            result = '(' + result + ')'
+        flag_br_2 = 1
+
+        result += '/\\'
+        if flag_br_1 == 0:
+            result = ')' + result
+
+    return result, flag_br_2
+
+
+def get_value(number, expr, variables):
+    curr_expr = expr
+
+    row = get_row(number, len(variables))
+    while True:
+        prev_curr_expr = curr_expr
+        curr_expr = solve_subexpr(row, variables, curr_expr)
+        if prev_curr_expr == curr_expr:
+            break
+
+    return curr_expr, row
 
 
 def solve_subexpr(row, variables, expr):
