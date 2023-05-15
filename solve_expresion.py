@@ -25,7 +25,7 @@ def get_row(number, num_vars):
 def solve(variables, expr, result):
     """Function solves expression and puts results into the table."""
     number = -1
-    flag_br_1, flag_br_2 = 0, 0
+    flag_br_2 = 0
     for i in range(2 ** len(variables)):
 
         number += 1
@@ -39,18 +39,25 @@ def solve(variables, expr, result):
                 break
 
         if curr_expr == '0':
+            curr_result = ""
+            flag_br_1 = 0
             for j in range(len(variables)):
                 if row[j] == 0:
-                    result += variables[j]
+                    curr_result += variables[j]
                 else:
-                    result += '(!' + variables[j] + ')'
+                    curr_result += '(!' + variables[j] + ')'
 
                 if flag_br_1 == 1:
-                    result = '(' + result + ')'
+                    curr_result = '(' + curr_result + ')'
                 flag_br_1 = 1
-                result += '\\/'
+                curr_result += '\\/'
 
-            result = result[:-2]
+            result += curr_result[:-2]
+            if flag_br_2 == 1:
+                result = '(' + result + ')'
+            flag_br_2 = 1
+
+
             result += '/\\'
             if flag_br_1 == 0:
                 result = ')' + result
@@ -59,7 +66,7 @@ def solve(variables, expr, result):
         elif curr_expr != '1':
             return False
 
-    result = result[:-4]
+    result = result[:-2]
 
     print(result)
     return True
