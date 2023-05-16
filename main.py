@@ -71,7 +71,6 @@ def main():
     if check_upper(variables) is False:
         return False
 
-
     if se.solve(variables, expr) is False:
         return False
 
