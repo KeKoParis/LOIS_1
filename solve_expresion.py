@@ -22,7 +22,7 @@ def get_row(number, num_vars):
     return row
 
 
-def solve(variables, expr):
+def solve(variables, expr, extra):
     """Function solves expression and puts results into the table."""
     number = -1
     flag_br_2 = 0
@@ -42,7 +42,8 @@ def solve(variables, expr):
 
     result = result[:-2]
 
-    result = result.replace('!!', '!')
+    for i in extra:
+        result = result.replace('!' + i, i)
 
     if result != "":
         print(result)

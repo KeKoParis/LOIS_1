@@ -47,9 +47,9 @@ def check_nums(expr):
             return True
 
 
-def extra_nums(variables, expr):
+def extra_nums(curr_variables, expr):
     extra = list()
-
+    variables = list(curr_variables)
     for i in expr:
         if i.isnumeric():
             new_var = ""
@@ -60,12 +60,14 @@ def extra_nums(variables, expr):
             while change:
                 for j in range(len(variables)):
                     if pseudo_var == variables[j]:
-                        pseudo_var = chr(int(pseudo_var) + 1)
+                        pseudo_var = chr(ord(pseudo_var) + 1)
+                        change = True
                         break
-                change = False
+                    change = False
             new_var += pseudo_var
             extra.append(new_var)
-
+            variables.append(pseudo_var)
+    print(extra)
     return extra
 
 
@@ -96,7 +98,7 @@ def main():
 
     extra = extra_nums(variables, expr)
     variables += extra
-    if se.solve(variables, expr) is False:
+    if se.solve(variables, expr, extra) is False:
         return False
 
 
