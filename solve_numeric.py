@@ -42,8 +42,13 @@ def build_pdnf_num(expr):
 
     for i in range(len(row)):
         if i == 0:
-            result += "(" + chr(i + 65) + "\\/"
+            if row[i] == '1':
+                result += "(!" + chr(i + 65) + "\\/"
+            else:
+                result += "(" + chr(i + 65) + "\\/"
         else:
+            if row[i] == '1':
+                result += '!'
             result += chr(i + 65)
             result += ")\\/"
             left_br += 1
