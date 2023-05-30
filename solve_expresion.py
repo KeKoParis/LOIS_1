@@ -42,7 +42,10 @@ def solve(variables, expr):
 
     result = result[:-2]
 
-    print(result)
+    if result != "":
+        print(result)
+    else:
+        print("No PDNF")
     return True
 
 

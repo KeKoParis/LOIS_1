@@ -59,11 +59,12 @@ def main():
         return False
 
     if len(variables) == 0:
-        expr = sn.solve_num(expr)
+        expr, num_res = sn.solve_num(expr)
         if expr == '0':
-            print('0')
+            print(num_res)
             return True
         elif expr == '1':
+            print("No PDNF")
             return True
         else:
             return False
