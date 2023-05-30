@@ -47,6 +47,28 @@ def check_nums(expr):
             return True
 
 
+def extra_nums(variables, expr):
+    extra = list()
+
+    for i in expr:
+        if i.isnumeric():
+            new_var = ""
+            if i == '1':
+                new_var = '!'
+            pseudo_var = chr(65)
+            change = True
+            while change:
+                for j in range(len(variables)):
+                    if pseudo_var == variables[j]:
+                        pseudo_var = chr(int(pseudo_var) + 1)
+                        break
+                change = False
+            new_var += pseudo_var
+            extra.append(new_var)
+
+    return extra
+
+
 def main():
     """Function calls another functions."""
     expr = input('Enter expression: ')
@@ -72,6 +94,8 @@ def main():
     if check_upper(variables) is False:
         return False
 
+    extra = extra_nums(variables, expr)
+    variables += extra
     if se.solve(variables, expr) is False:
         return False
 

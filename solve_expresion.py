@@ -42,6 +42,8 @@ def solve(variables, expr):
 
     result = result[:-2]
 
+    result = result.replace('!!', '!')
+
     if result != "":
         print(result)
     else:
