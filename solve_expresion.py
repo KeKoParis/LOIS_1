@@ -27,7 +27,8 @@ def solve(variables, expr, extra):
     number = -1
     flag_br_2 = 0
     result = ""
-    for i in range(2 ** len(variables)):
+
+    for i in range(2 ** (len(variables)-len(extra))):
 
         number += 1
 

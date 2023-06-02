@@ -67,7 +67,7 @@ def extra_nums(curr_variables, expr):
             new_var += pseudo_var
             extra.append(new_var)
             variables.append(pseudo_var)
-    print(extra)
+
     return extra
 
 
